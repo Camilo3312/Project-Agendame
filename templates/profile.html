@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+  <div class="container_infopersonal">
+    <div class="contaienr_infologo">
+      <img src="{{ url_for('static', filename='img/logo_user.svg') }}" alt="">
+    </div>
+    <div class="container_infotext">
+      <h1 class="title_name">{{datas[2]}}</h1>
+      <h1 class="title_name">{{session['name']}}</h1>
+      <h1 class="ocupation">{{datas[4]}}</h1>
+      <p><b>Edad </b> {{edad}} Años</p>
+      <p><b>Gmail </b> {{datas[5]}}</p>
+    </div>
+  </div>
+{% endblock %}

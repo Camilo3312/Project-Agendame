@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Agendame</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="container_img"> 
+                <img src="{{ url_for('static', filename='img/logo_agendame.png') }}" alt="">
+            </div>
+            {% if session['name'] %}
+                <div class="btn_menu">
+                    <ul>
+                        <li>{{ session['name'] }}</li>
+                        <li class=""><a href="/profile/{{id}}">Perfil</a></li>
+                        <li><a href="/logout">Cerrar sesion</a></li>
+                    </ul>
+                </div>
+       
+            {% else %}
+            <ul>
+                <li><a href="/">Inicio</a></li>
+                <li><a href="/login">Iniciar sesion</a></li>
+                <li><a href="/register" class="btn_create">Crear cuenta</a></li>
+            </ul>
+            {% endif %}
+        </nav>
+    </header>
+
+    <div class="container_section">
+        {% block body%}
+        {% endblock %}
+    </div>
+
+    <footer>
+        <div class="container_footer">
+            <p>Desarrolladores: Cristian Camilo Velasquez Lopez, Luis Muguel Muñoz Alfonso | Agendame &copy; 2021 - Todos los derechos reservados para Carlos Manuel Nuñez Lopez</p>
+        </div>
+    </footer>
+
+<script src="{{ url_for('static', filename='js/main.js')}}" ></script>
+<script src="https://kit.fontawesome.com/48bc55fbcb.js" crossorigin="anonymous"></script>
+</body>
+</html>

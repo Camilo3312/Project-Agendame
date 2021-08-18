@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<div class="container_login">
+
+    <div class="container_form_login">
+        <form action="/login/post" method="POST" class="form_login">
+            <div class="header_form_register">
+            <h1>Inicio de sesion</h1>
+            </div>
+            <p class="subtitle_login" >Correo</p>
+            <input type="text" name="email" placeholder="carlos22@gmail.com" class="btn_login">
+            <p class="subtitle_login">Contraseña</p>
+            <input type="password" name="password" placeholder="Contraseña" class="btn_login">
+            <input type="submit" value="Ingresar" class="button_submit">
+        </form>
+        <div class="message">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                {% for message in messages %}
+                        <p class="error">{{ message }} {{ ide }}</p>
+                {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+        <p class="text_register">¿No tienes una cuenta?.</p>
+        <p class="text_register"><a href="/register">Registrate</a></p>
+    </div>
+</div>
+{% endblock %}

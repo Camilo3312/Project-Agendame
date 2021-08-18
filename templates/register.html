@@ -1,0 +1,61 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="container_login">
+    <div class="container_text_register">
+        <h1 class="title_text_register">Crea tu cuenta</h1>
+        <p>Y podrás estar al tanto de tus eventos</p>
+        <p>más <b>importantes</b> sin que se <b> pierdan.</b></p>
+    </div>
+
+    <form action="/register/post" method="POST" class="form_register">
+        
+        <div class="header_form_register">
+            <h1>Registro</h1>
+        </div>
+        
+        <div class="container_inputs_register">
+            <p class="subtitle_login">Nombres</p>
+            <input type="text" name="names" placeholder="Nombres" class="email">
+        </div>
+
+        <div class="container_inputs_register">
+            <p class="subtitle_login">Apellidos</p>
+            <input type="text" name="surnames" placeholder="Apellidos" class="email">
+        </div>
+
+        <div class="container_inputs_register">
+            <p class="subtitle_login">Fecha de nacimeinto</p>
+            <input type="date" name="fecha_nacimiento" class="email">
+        </div>
+
+        <div class="container_inputs_register">
+            <p class="subtitle_login">Ocupacion</p>
+            <input type="text" name="ocupation" placeholder="Ocupacion" class="email">
+        </div>  
+
+        <div class="container_inputs_register">
+            <p class="subtitle_login">Correo</p>
+            <input type="text" name="email" placeholder="Correo" class="email">
+        </div>
+
+        <div class="container_inputs_register">
+            <p class="subtitle_login">Contraseña</p>
+            <input type="password" name="password" placeholder="Contraseña" class="email">
+        </div>
+
+        <input type="submit" value="Registrarse" class="button_submit">
+
+        <div class="message">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                {% for message in messages %}
+                        <p class="error">{{ message }}</p>
+                {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+    </form>
+
+</div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'layout.html' %} 
+
+{% block body%}
+<div class="container_edit_event">
+    <form action="/edit_event/{{id}}/{{id_event}}" method="POST" class="form_edit_event">
+        <h2>Editar evento</h2>
+        <input type="text" name="date" id="data_event" placeholder="Event Title" value="{{datas[2]}}" style="display: none;" />
+        <input type="time" name="time" placeholder="Hora" class="add_time" value="{{datas[3]}}"/>
+        <input type="text" name="lugar" placeholder="Lugar" class="add_lugar" value="{{datas[6]}}" maxlength="10"/>
+        <input type="text" name="event" value="{{datas[5]}}" class="add_lugar">
+    
+        <button type="submit" id="saveButton">Guardar</button>
+    </form>
+</div>
+{% endblock %}

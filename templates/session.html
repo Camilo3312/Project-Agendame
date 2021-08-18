@@ -1,0 +1,107 @@
+{% extends 'layout.html' %} 
+
+{% block body%}
+<div class="container_session">
+
+    <!-- Calendar -->
+    <div id="container">
+        <div id="header">
+          <h1 id="monthDisplay"></h1>
+          <div>
+            <button id="backButton"><i class="fas fa-angle-left"></i></button>
+            <button id="nextButton"><i class="fas fa-angle-right"></i></button>
+          </div>
+        </div>
+
+        <div id="weekdays">
+          <div>Domingo</div>
+          <div>Lunes</div>
+          <div>Martes</div>
+          <div>Miercoles</div>
+          <div>Jueves</div>
+          <div>Viernes</div>
+          <div>Sabado</div>
+        </div>
+  
+        <div id="calendar"></div>
+    </div>
+
+    <!-- Add event -->
+    <div id="newEventModal">
+        <button id="cancelButton"><i class="fas fa-times"></i></button>
+        <form action="/add_event/{{id}}" method="POST">
+            <h2>Nuevo evento</h2>
+            <input type="text" name="date" id="data_event" placeholder="Event Title" value="" style="display: none;" />
+            <input type="time" name="time" placeholder="Hora" class="add_time"/>
+            <input type="text" name="lugar" placeholder="Lugar" class="add_lugar" maxlength="10"/>
+            <input type="text" id="eventTitleInput"  placeholder="Titulo del evento" class="add_lugar"/>
+            <textarea name="event" id="" cols="30" rows="1" placeholder="Descripcion..." class="add_event"></textarea>
+
+            <button type="submit" id="saveButton">Guardar</button>
+        </form>
+
+    </div>
+  
+    <div id="deleteEventModal">
+        <h2>Event</h2>
+  
+        <p id="eventText"></p>
+  
+        <button id="deleteButton">Delete</button>
+        <button id="closeButton">Close</button>
+    </div>
+  
+    <div id="modalBackDrop"></div>
+
+    <!-- Events -->
+    <div class="container_event">
+        
+        <!-- Filter -->
+        <div class="container_header_event">
+            <div class="container_header_filter">
+                <h2>Filtro</h2>
+                <i class="fas fa-angle-down angle_filter"></i>
+            </div>
+
+            <div class="container_filternew oculto"> 
+                <form class="form_filter" action="/search_event/{{id}}" method="POST">
+                    <input type="date" name="date" placeholder="Fecha" class="btn_filternew">
+                    <input type="time" name="time" placeholder="Hora" class="btn_filtertime">
+                    <input type="text" name="lugar" placeholder="Lugar" class="btn_filternew" maxlength="10">
+                    <input type="text" name="descripcion" placeholder="Descripcion corta" class="filter_descripcion">
+                    
+                    <label> <input type="submit" value="Buscar" class="btn_submit_filternew"><i class="fas fa-search btn_search_filter"></i></label>    
+                </form>          
+            </div>
+            
+        <div class="header_filter_date"> 
+            {% if 'date' in session %}
+            <a href="/clear_filter"><i class="fas fa-arrow-left clear_filter"></i></a>
+            {% endif %} 
+            <p class="event_proxim"> <b>{{ message }}</b></p>
+        </div>
+        
+        </div>
+        <!-- Cards events -->
+        <div class="container_cards">
+        {% for i in datas %}
+            <div class="card_event">
+                <div class="header_card">
+                    <p class="card_date"><b>Fecha</b> {{ i[2] }}</p>
+                    <p class="card_date"><b>Hora</b> {{ i[3] }}</p>
+                    <p class="card_date"><b>Lugar</b> {{ i[6] }}</p>
+                    <a href="/edit_event/{{i[1]}}/{{i[0]}}"><i class="far fa-edit btn_delete"></i></a>
+                    <a href="/remove_event/{{i[1]}}/{{i[0]}}"><i class="fas fa-trash-alt btn_delete"></i></a>
+                </div>
+                <div class="text_card">
+                    <p>{{ i[5] }}</p>
+                </div>
+            </div>                
+        {% endfor %}
+        </div> 
+
+    </div>
+ 
+</div>
+
+{% endblock %}
