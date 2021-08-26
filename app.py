@@ -8,10 +8,10 @@ import re
 app = Flask(__name__)
 
 # Connection MySQL
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = ''
-app.config['MYSQL_DB'] = 'agendame'
+app.config['MYSQL_HOST'] = 'bopzzm3wvllhte5nnepy-mysql.services.clever-cloud.com'
+app.config['MYSQL_USER'] = 'u1abqfyilh7e5mat'
+app.config['MYSQL_PASSWORD'] = 'lcnX1iCTWu3kMSoTZtgg'
+app.config['MYSQL_DB'] = 'bopzzm3wvllhte5nnepy'
 
 mysql = MySQL(app)
 
@@ -335,4 +335,4 @@ def logout():
     return redirect(url_for('home'))
 
 if __name__ == '__main__':
-    app.run(port = 3000, debug = True)
+    app.run(host = "0.0.0.0", port = 3000, debug = True)
